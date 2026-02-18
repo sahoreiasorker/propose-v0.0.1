@@ -24,17 +24,34 @@ let musicPlaying = false;
 
 // ====== Initialize ======
 document.addEventListener('DOMContentLoaded', () => {
-    initScrollReveal();
-    initQuoteCarousel();
-    initStartButton();
-    initYesButton();
-    initMusicToggle();
-    createSparkles();
-    startFloatingHearts();
-    startRosePetals();
-    initTypewriter();
-    initParallax();
-    initCursorTrail();
+    // Start loading sequence
+    const loadingScreen = document.getElementById('loading-screen');
+    const LOADING_DURATION = 3000; // Duration of the loading animation in ms
+
+    // After loading completes, reveal the page
+    setTimeout(() => {
+        // Fade out loading screen
+        loadingScreen.classList.add('hidden');
+
+        // Add 'loaded' class to body to trigger section entrance animations
+        document.body.classList.add('loaded');
+
+        // Initialize everything after the loader fades
+        setTimeout(() => {
+            loadingScreen.remove();
+            initScrollReveal();
+            initQuoteCarousel();
+            initStartButton();
+            initYesButton();
+            initMusicToggle();
+            createSparkles();
+            startFloatingHearts();
+            startRosePetals();
+            initTypewriter();
+            initParallax();
+            initCursorTrail();
+        }, 800); // wait for fade-out transition to finish
+    }, LOADING_DURATION);
 });
 
 // ====== Scroll Reveal Animation ======
